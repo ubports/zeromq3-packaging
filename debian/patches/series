@@ -1,3 +1,3 @@
 disable-test_security_curve.patch
-kfreebsd-support.patch
+#kfreebsd-support.patch
 no-hardcoded-port-in-tests.patch

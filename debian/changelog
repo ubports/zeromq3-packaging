@@ -1,3 +1,9 @@
+zeromq3 (4.1.5+git20160811+2fc86bc-1ubports1) xenial; urgency=medium
+
+  * Remove kfreebsd patch
+
+ -- Marius Gripsgard <marius@ubports.com>  Sun, 26 Aug 2018 16:34:43 +0200
+
 zeromq3 (4.1.5+git20160811+2fc86bc-0ubuntu0.16.04.1~overlay2) xenial; urgency=medium
 
   [ Łukasz 'sil2100' Zemczak ]
