@@ -31,7 +31,7 @@ so don't abort if it returns ENOSYS.
      rc = pthread_setschedparam(descriptor, policy, &param);
 +
 +    // If this feature is unavailable at run-time, don't abort.
-+    if(rc == ENOSYS) return;
++    return;
 +
      posix_assert (rc);
  #else
