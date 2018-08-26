@@ -1,0 +1,18 @@
+Description: disable test_security_curve
+ It hangs in buildds that not x86/x64 based.
+Author: Laszlo Boszormenyi (GCS) <gcs@debian.org>
+Forwarded: no
+Last-Update: 2016-08-11
+
+---
+
+--- zeromq3-4.1.2.orig/Makefile.am
++++ zeromq3-4.1.2/Makefile.am
+@@ -309,7 +309,6 @@ test_apps = \
+ 	tests/test_ctx_destroy \
+ 	tests/test_security_null \
+ 	tests/test_security_plain \
+-	tests/test_security_curve \
+ 	tests/test_iov \
+ 	tests/test_spec_req \
+ 	tests/test_spec_rep \

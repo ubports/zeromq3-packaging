@@ -1,0 +1,2 @@
+version=3
+https://github.com/zeromq/zeromq4-1/releases .*/v\d.+/zeromq-([\d\.]+)\.(?:tgz|tbz2|txz|tar\.(?:gz|bz2|xz))

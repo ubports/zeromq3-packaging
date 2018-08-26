@@ -1,0 +1,38 @@
+Subject: add support for GNU/kFreeBSD
+From: Steven Chamberlain <steven@pyro.eu.org>
+Date: Mon, 22 Feb 2016 02:21:34 +0000
+
+The FreeBSD kernel may return ECONNRESET on close() under load but this
+is not an error.
+
+Debian GNU/kFreeBSD doesn't currently implement pthread_setschedparam,
+so don't abort if it returns ENOSYS.
+
+--- a/src/stream_engine.cpp
++++ b/src/stream_engine.cpp
+@@ -159,6 +159,12 @@
+         wsa_assert (rc != SOCKET_ERROR);
+ #else
+         int rc = close (s);
++#ifdef __FreeBSD_kernel__
++        // FreeBSD may return ECONNRESET on close() under load but this is not
++        // an error.
++        if (rc == -1 && errno == ECONNRESET)
++            rc = 0;
++#endif
+         errno_assert (rc == 0);
+ #endif
+         s = retired_fd;
+--- a/src/thread.cpp
++++ b/src/thread.cpp
+@@ -132,6 +132,10 @@
+ #endif
+ 
+     rc = pthread_setschedparam(descriptor, policy, &param);
++
++    // If this feature is unavailable at run-time, don't abort.
++    if(rc == ENOSYS) return;
++
+     posix_assert (rc);
+ #else
+ 
